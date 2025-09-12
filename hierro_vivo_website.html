@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hierro Vivo - Colección de Flores Eternas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f8f8;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #666;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .collection-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            margin: 2rem auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .collection-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin: 2rem 0;
+            letter-spacing: 2px;
+        }
+
+        .main-title {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #333;
+            margin: 2rem 0;
+            letter-spacing: 3px;
+        }
+
+        .category-button {
+            background: #333;
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: background 0.3s ease;
+            display: inline-block;
+            margin-top: 2rem;
+        }
+
+        .category-button:hover {
+            background: #555;
+        }
+
+        /* Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #333;
+        }
+
+        /* Tienda Section */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #999;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 300px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #999;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: #333;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #555;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-item {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 2rem 1rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Section visibility */
+        .section {
+            display: none;
+        }
+
+        .section.active,
+        #inicio {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">Hierro Vivo</a>
+            <ul class="nav-links">
+                <li><a href="#inicio" onclick="showSection('inicio')">Inicio</a></li>
+                <li><a href="#tienda" onclick="showSection('tienda')">Tienda</a></li>
+                <li><a href="#acerca-de" onclick="showSection('acerca-de')">Acerca de</a></li>
+                <li><a href="#contacto" onclick="showSection('contacto')">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Inicio Section -->
+        <section id="inicio" class="section active">
+            <div class="hero">
+                <div class="hero-content">
+                    <!-- Placeholder para la imagen de la colección -->
+                    <div class="collection-image" style="background: url('data:image/svg+xml,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 600 300\"><rect fill=\"%23f0f0f0\" width=\"600\" height=\"300\"/><text x=\"50%\" y=\"50%\" dominant-baseline=\"middle\" text-anchor=\"middle\" fill=\"%23999\" font-size=\"16\">Colección de Flores Eternas</text></svg>') center/cover;">
+                    </div>
+                    
+                    <div class="collection-title">COLECCIÓN DE FLORES ETERNAS</div>
+                    
+                    <h1 class="main-title">HIERROVIVO</h1>
+                    
+                    <a href="#tienda" class="category-button" onclick="showSection('tienda')">VER POR CATEGORÍA</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tienda Section -->
+        <section id="tienda" class="section">
+            <div class="section">
+                <h2>TIENDA</h2>
+                <p style="text-align: center; font-size: 1.1rem; color: #666; margin-bottom: 3rem;">
+                    Descubre nuestra colección única de flores eternas en hierro forjado
+                </p>
+                
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">🌹</div>
+                        <div class="product-info">
+                            <h3 class="product-title">Rosa Eterna</h3>
+                            <p class="product-description">Rosa forjada en hierro con acabado oxidado natural</p>
+                            <div class="product-price">$850 MXN</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">🌻</div>
+                        <div class="product-info">
+                            <h3 class="product-title">Girasol Forjado</h3>
+                            <p class="product-description">Girasol artesanal con detalles únicos</p>
+                            <div class="product-price">$750 MXN</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">🌺</div>
+                        <div class="product-info">
+                            <h3 class="product-title">Flor Tropical</h3>
+                            <p class="product-description">Diseño exótico en hierro con pintura especial</p>
+                            <div class="product-price">$920 MXN</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">🌸</div>
+                        <div class="product-info">
+                            <h3 class="product-title">Cerezo en Flor</h3>
+                            <p class="product-description">Delicadas flores de cerezo en hierro forjado</p>
+                            <div class="product-price">$680 MXN</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">🌼</div>
+                        <div class="product-info">
+                            <h3 class="product-title">Margarita Clásica</h3>
+                            <p class="product-description">Margarita tradicional con acabado vintage</p>
+                            <div class="product-price">$590 MXN</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">🌷</div>
+                        <div class="product-info">
+                            <h3 class="product-title">Tulipán Elegante</h3>
+                            <p class="product-description">Tulipán estilizado con base decorativa</p>
+                            <div class="product-price">$710 MXN</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Acerca de Section -->
+        <section id="acerca-de" class="section">
+            <div class="section">
+                <h2>ACERCA DE</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>En <strong>Hierro Vivo</strong>, creamos arte que trasciende el tiempo. Nuestras flores eternas son más que simples decoraciones; son expresiones de belleza permanente forjadas con pasión y dedicación.</p>
+                        
+                        <p>Cada pieza es única, trabajada artesanalmente por maestros herreros que han perfeccionado su técnica durante años. Utilizamos hierro de la más alta calidad, aplicando técnicas tradicionales de forjado que le dan a cada flor su carácter distintivo.</p>
+                        
+                        <p>Nuestra filosofía se basa en la creencia de que la belleza debe perdurar. Por eso, cada flor que creamos está diseñada para resistir el paso del tiempo, manteniendo su elegancia y significado para las generaciones futuras.</p>
+                        
+                        <p>Desde rosas clásicas hasta diseños contemporáneos, nuestra colección ofrece opciones para todos los gustos y espacios. Cada compra no solo adquiere una pieza de arte, sino que también apoya el trabajo artesanal mexicano.</p>
+                    </div>
+                    <div class="about-image">
+                        🔨 Artesanía
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto Section -->
+        <section id="contacto" class="section">
+            <div class="section">
+                <h2>CONTACTO</h2>
+                <div class="contact-content">
+                    <div class="contact-form">
+                        <h3 style="margin-bottom: 1.5rem; color: #333;">Envíanos un mensaje</h3>
+                        <form>
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" id="nombre" name="nombre" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="telefono">Teléfono</label>
+                                <input type="tel" id="telefono" name="telefono">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="mensaje">Mensaje</label>
+                                <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos sobre tu proyecto o consulta..." required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <h3 style="margin-bottom: 1.5rem; color: #333;">Información de contacto</h3>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <strong>Dirección</strong><br>
+                                Ciudad Victoria, Tamaulipas<br>
+                                México
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">📱</div>
+                            <div>
+                                <strong>Teléfono</strong><br>
+                                +52 834 123 4567
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div>
+                                <strong>Email</strong><br>
+                                contacto@hierrovivo.com
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">🕒</div>
+                            <div>
+                                <strong>Horarios</strong><br>
+                                Lunes a Viernes: 9:00 - 18:00<br>
+                                Sábados: 9:00 - 14:00
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Hierro Vivo. Todos los derechos reservados.</p>
+        <p>Flores eternas forjadas con pasión en Ciudad Victoria, Tamaulipas</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Ocultar todas las secciones
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Mostrar la sección seleccionada
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+        }
+
+        // Manejar el envío del formulario
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Mensaje enviado! Te contactaremos pronto.');
+            this.reset();
+        });
+
+        // Navegación suave al hacer clic en los enlaces
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                showSection(targetId);
+            });
+        });
+    </script>
+</body>
+</html>
